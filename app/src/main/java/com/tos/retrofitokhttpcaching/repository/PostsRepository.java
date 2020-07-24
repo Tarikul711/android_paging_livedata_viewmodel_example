@@ -17,10 +17,10 @@ import retrofit2.Response;
 /**
  * Created by tarikul on 24/7/20
  */
-public class PostListRepository {
+public class PostsRepository {
     private WebInterface webInterface;
 
-    public PostListRepository() {
+    public PostsRepository() {
     }
 
     public MutableLiveData<List<PostData>> getPosts() {

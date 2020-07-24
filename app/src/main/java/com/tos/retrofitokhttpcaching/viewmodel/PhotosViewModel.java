@@ -1,7 +1,7 @@
 package com.tos.retrofitokhttpcaching.viewmodel;
 
 import com.tos.retrofitokhttpcaching.model.photo.PhotoData;
-import com.tos.retrofitokhttpcaching.repository.PhotoListRepository;
+import com.tos.retrofitokhttpcaching.repository.PhotosRepository;
 
 import java.util.List;
 
@@ -11,12 +11,12 @@ import androidx.lifecycle.ViewModel;
 /**
  * Created by tarikul on 24/7/20
  */
-public class PhotoListViewModel extends ViewModel {
+public class PhotosViewModel extends ViewModel {
     private MutableLiveData<List<PhotoData>> data;
-    private PhotoListRepository repository;
+    private PhotosRepository repository;
 
-    public PhotoListViewModel() {
-        repository = new PhotoListRepository();
+    public PhotosViewModel() {
+        repository = new PhotosRepository();
     }
 
     public void init() {

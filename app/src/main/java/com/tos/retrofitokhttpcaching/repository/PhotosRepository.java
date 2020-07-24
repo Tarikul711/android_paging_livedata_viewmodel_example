@@ -15,10 +15,10 @@ import retrofit2.Response;
 /**
  * Created by tarikul on 24/7/20
  */
-public class PhotoListRepository {
+public class PhotosRepository {
     WebInterface webInterface;
 
-    public PhotoListRepository() {
+    public PhotosRepository() {
     }
 
     public MutableLiveData<List<PhotoData>> getPhotos() {
