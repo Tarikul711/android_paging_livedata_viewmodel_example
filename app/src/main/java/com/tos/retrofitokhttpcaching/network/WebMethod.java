@@ -1,4 +1,4 @@
-package com.tos.retrofitokhttpcaching.webapi;
+package com.tos.retrofitokhttpcaching.network;
 
 class WebMethod {
 

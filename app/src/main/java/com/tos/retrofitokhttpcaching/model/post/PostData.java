@@ -1,5 +1,5 @@
 
-package com.tos.retrofitokhttpcaching.webapi.post;
+package com.tos.retrofitokhttpcaching.model.post;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

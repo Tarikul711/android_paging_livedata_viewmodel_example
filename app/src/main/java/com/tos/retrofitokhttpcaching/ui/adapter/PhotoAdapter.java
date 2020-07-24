@@ -1,13 +1,13 @@
-package com.tos.retrofitokhttpcaching.adapter;
+package com.tos.retrofitokhttpcaching.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
+import com.bumptech.glide.Glide;
 import com.tos.retrofitokhttpcaching.R;
-import com.tos.retrofitokhttpcaching.webapi.post.PostData;
+import com.tos.retrofitokhttpcaching.model.photo.PhotoData;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
+public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> {
 
     private Context context;
-    private List<PostData> items;
+    private List<PhotoData> items;
 
 
-    public PostAdapter(Context context, List<PostData> items) {
+    public PhotoAdapter(Context context, List<PhotoData> items) {
         this.context = context;
         this.items = items;
     }
@@ -38,14 +38,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        PostData item = items.get(position);
+        PhotoData item = items.get(position);
 
-        holder.tvText.setText(item.getTitle());
-        holder.ivImage.setVisibility(View.GONE);
-       /* Glide.with(context)
-                .load(item.getUrl())
-                .into(holder.ivImage);*/
-        holder.ivImage.setTag(item);
+        holder.tvText.setText(String.format("Author: %s", item.getAuthor()));
+        Glide.with(context)
+                .load(item.getDownloadUrl())
+                .into(holder.ivImage);
+        holder.tvText.setTag(item);
     }
 
     @Override

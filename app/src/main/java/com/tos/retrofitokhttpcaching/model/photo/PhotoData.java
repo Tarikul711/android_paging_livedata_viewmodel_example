@@ -1,4 +1,4 @@
-package com.tos.retrofitokhttpcaching.webapi.photo;
+package com.tos.retrofitokhttpcaching.model.photo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
