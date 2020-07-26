@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.tos.retrofitokhttpcaching.R;
 import com.tos.retrofitokhttpcaching.model.post.PostData;
+import com.tos.retrofitokhttpcaching.model.question.Item;
 import com.tos.retrofitokhttpcaching.model.question.QuestionData;
 import com.tos.retrofitokhttpcaching.network.APIService;
 import com.tos.retrofitokhttpcaching.network.RootUrl;
@@ -21,9 +22,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
@@ -44,14 +48,30 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
-        viewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
-        viewModel.init();
+//        viewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
+//        viewModel.init();
         initView();
 
     }
 
     public void initView() {
         progressBar = findViewById(R.id.progressBar);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        QuestionViewModel itemViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
+        final QuestionAdapter adapter = new QuestionAdapter(this);
+
+        itemViewModel.itemPagedList.observe(this, new Observer<PagedList<Item>>() {
+            @Override
+            public void onChanged(@Nullable PagedList<Item> items) {
+                progressBar.setVisibility(View.GONE);
+                adapter.submitList(items);
+                recyclerView.setAdapter(adapter);
+            }
+        });
+
+
+       /* progressBar = findViewById(R.id.progressBar);
         recyclerView = findViewById(R.id.recyclerView);
         viewModel.getQuestion().observe(this, new Observer<QuestionData>() {
             @Override
@@ -61,7 +81,7 @@ public class QuestionActivity extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 recyclerView.setAdapter(adapter);
             }
-        });
+        });*/
     }
 
 }

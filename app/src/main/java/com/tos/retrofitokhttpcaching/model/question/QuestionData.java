@@ -2,8 +2,12 @@
 package com.tos.retrofitokhttpcaching.model.question;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 
 public class QuestionData {
 
@@ -51,5 +55,18 @@ public class QuestionData {
     public void setQuotaRemaining(Integer quotaRemaining) {
         this.quotaRemaining = quotaRemaining;
     }
+
+    public static final DiffUtil.ItemCallback<Item> CALLBACK = new DiffUtil.ItemCallback<Item>() {
+        @Override
+        public boolean areItemsTheSame(Item oldItem, Item newItem) {
+            return oldItem.getIsAnswered() == newItem.getIsAnswered();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Item oldItem, @NonNull Item newItem) {
+            return false;
+        }
+
+    };
 
 }

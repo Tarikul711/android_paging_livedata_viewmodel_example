@@ -8,21 +8,24 @@ import android.view.ViewGroup;
 import com.tos.retrofitokhttpcaching.R;
 import com.tos.retrofitokhttpcaching.model.post.PostData;
 import com.tos.retrofitokhttpcaching.model.question.Item;
+import com.tos.retrofitokhttpcaching.model.question.QuestionData;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
+public class QuestionAdapter extends PagedListAdapter<Item, QuestionAdapter.ViewHolder> {
 
     private Context context;
     private List<Item> items;
 
 
-    public QuestionAdapter(Context context, List<Item> items) {
+    public QuestionAdapter(Context context) {
+        super(QuestionData.CALLBACK);
         this.context = context;
         this.items = items;
     }
