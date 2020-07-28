@@ -41,7 +41,7 @@ public class QuestionAdapter extends PagedListAdapter<Item, QuestionAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Item item = items.get(position);
+        Item item = getItem(position);
 
         holder.tvText.setText(item.getTitle());
         holder.ivImage.setVisibility(View.GONE);
@@ -51,11 +51,11 @@ public class QuestionAdapter extends PagedListAdapter<Item, QuestionAdapter.View
         holder.ivImage.setTag(item);
     }
 
-    @Override
+   /* @Override
     public int getItemCount() {
         return items.size();
     }
-
+*/
 
     class ViewHolder extends RecyclerView.ViewHolder {
         AppCompatTextView tvText;

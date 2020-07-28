@@ -40,10 +40,10 @@ public class APIService {
 
     private static OkHttpClient okHttpClient() {
         return new OkHttpClient.Builder()
-                .cache(cache())
+//                .cache(cache())
                 .addInterceptor(httpLoggingInterceptor()) // used if network off OR on
-                .addNetworkInterceptor(networkInterceptor()) // only used when network is on
-                .addInterceptor(offlineInterceptor())
+//                .addNetworkInterceptor(networkInterceptor()) // only used when network is on
+//                .addInterceptor(offlineInterceptor())
                 .build();
     }
 

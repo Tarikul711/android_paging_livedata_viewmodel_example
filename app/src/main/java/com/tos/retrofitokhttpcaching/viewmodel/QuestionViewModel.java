@@ -26,6 +26,7 @@ public class QuestionViewModel extends ViewModel {
 
         PagedList.Config config =
                 (new PagedList.Config.Builder()).setEnablePlaceholders(false)
+                        .setPageSize(QuestionDataSource.PAGE_SIZE)
                         .build();
         itemPagedList = (new LivePagedListBuilder(factory, config)).build();
     }

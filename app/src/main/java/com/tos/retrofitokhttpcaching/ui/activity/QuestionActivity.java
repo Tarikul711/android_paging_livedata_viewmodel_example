@@ -40,16 +40,12 @@ public class QuestionActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Context context;
     private static final String TAG = "MainActivity";
-    QuestionViewModel viewModel;
-    QuestionAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
-//        viewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
-//        viewModel.init();
         initView();
 
     }
@@ -58,6 +54,7 @@ public class QuestionActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         QuestionViewModel itemViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
         final QuestionAdapter adapter = new QuestionAdapter(this);
 
@@ -66,22 +63,9 @@ public class QuestionActivity extends AppCompatActivity {
             public void onChanged(@Nullable PagedList<Item> items) {
                 progressBar.setVisibility(View.GONE);
                 adapter.submitList(items);
-                recyclerView.setAdapter(adapter);
             }
         });
-
-
-       /* progressBar = findViewById(R.id.progressBar);
-        recyclerView = findViewById(R.id.recyclerView);
-        viewModel.getQuestion().observe(this, new Observer<QuestionData>() {
-            @Override
-            public void onChanged(QuestionData questionData) {
-                progressBar.setVisibility(View.GONE);
-                adapter = new QuestionAdapter(context, questionData.getItems());
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                recyclerView.setAdapter(adapter);
-            }
-        });*/
+        recyclerView.setAdapter(adapter);
     }
 
 }

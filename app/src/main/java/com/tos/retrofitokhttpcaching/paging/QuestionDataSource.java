@@ -19,6 +19,7 @@ import retrofit2.Response;
  */
 public class QuestionDataSource extends PageKeyedDataSource<Integer, Item> {
 
+    public static final int PAGE_SIZE = 50;
     private static final int FIRST_PAGE = 1;
     private static final String SITE_NAME = "stackoverflow";
     WebInterface webInterface;
@@ -48,7 +49,7 @@ public class QuestionDataSource extends PageKeyedDataSource<Integer, Item> {
 
     @Override
     public void loadBefore(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Item> callback) {
-        webInterface.getQuestionData(String.valueOf(FIRST_PAGE), SITE_NAME)
+        webInterface.getQuestionData(String.valueOf(params.key), SITE_NAME)
                 .enqueue(new Callback<QuestionData>() {
                     @Override
                     public void onResponse(@NotNull Call<QuestionData> call, @NotNull Response<QuestionData> response) {
@@ -68,7 +69,7 @@ public class QuestionDataSource extends PageKeyedDataSource<Integer, Item> {
 
     @Override
     public void loadAfter(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Item> callback) {
-        webInterface.getQuestionData(String.valueOf(FIRST_PAGE), SITE_NAME)
+        webInterface.getQuestionData(String.valueOf(params.key), SITE_NAME)
                 .enqueue(new Callback<QuestionData>() {
                     @Override
                     public void onResponse(@NotNull Call<QuestionData> call, @NotNull Response<QuestionData> response) {
